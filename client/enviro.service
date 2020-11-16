@@ -1,0 +1,15 @@
+[Unit]
+Description=Enviroplus MQTT Logger
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/pi/enviro/smqtt.py --broker gw-cyb.altorfer.net --topic sensors --interval 15
+WorkingDirectory=/home/pi/enviro
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
+
