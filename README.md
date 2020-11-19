@@ -19,3 +19,6 @@ I do use my Synology Storage to run the docker containers. The CPU and memory fo
 
 ## References that helped me 
 [https://gabrieltanner.org/blog/grafana-sensor-visualization]
+
+
+![alt text](https://github.com/maltorfer/enviroplus-mqtt-docker/blob/main/grafana_dashboard_multi.png?raw=true)
