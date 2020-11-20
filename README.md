@@ -38,16 +38,44 @@ CREATE USER telegraf WITH PASSWORD 'telegraf'
 GRANT ALL ON sensors TO telegraf
 ```
 
-
 ## Install (Client)
-- Follow the steps on https://learn.pimoroni.com/tutorial/sandyj/getting-started-with-enviro-plus to install the required libraries/components
 - Copy the contents of the client directory to your raspberry
+- Follow the steps on https://learn.pimoroni.com/tutorial/sandyj/getting-started-with-enviro-plus to install the required libraries/components. It is suggested to reboot after install if I2C wasn't already enabled.
+- Install python libraries
 
+```
+cd client
+pip3 install -r requirements.txt
+```
 
+- Optional: Enable the client as a service. First edit <code>enviro.service</code> an change as required.
+
+Start the service:
+```
+systemctl start enviro.service
+```
+Enable start at boot time:
+```
+systemctl enable enviro.service
+```
+
+## Configure grafana
+- Access Grafana from http://<host ip>:3000
+- Log in with username/password admin/admin
+- Go to Configuration > Data Sources
+- Add data source (InfluxDB)
+- Name: InfluxDB
+- URL: http://<host ip>:8086
+- Database: sensors
+- User: telegraf
+- Password: telegraf
+- Save & Test
+  
+Import one or both of the dashboard templates (json). The "multi" templates allows to easily switch multiple sensors. Since grafana only supports alerting without variables there's another template with the option to select a single sensor and have alerting.
+  
+![alt text](https://github.com/maltorfer/enviroplus-mqtt-docker/blob/main/grafana_dashboard_multi.png?raw=true)
 
 
 ## References that helped me 
 https://gabrieltanner.org/blog/grafana-sensor-visualization
 
-
-![alt text](https://github.com/maltorfer/enviroplus-mqtt-docker/blob/main/grafana_dashboard_multi.png?raw=true)
