@@ -78,4 +78,4 @@ Import one or both of the dashboard templates (json). The "multi" templates allo
 
 ## References that helped me 
 https://gabrieltanner.org/blog/grafana-sensor-visualization
-
+https://github.com/Nilhcem/home-monitoring-grafana
