@@ -10,6 +10,11 @@ Requirements:
 ## 1. Create Server- and Client-keys
 I'm using keys client- and server-keys to authenticate and secure the MQTT connection. Keys and in MQTT can be used in various ways; in particular they can be used for client identification based on the client-key content (CN) or just to authenticate the client. I'm using the keys only to authenticate the client. The identification of the client itself is done by username (without password as we use the key to secure). This way I can use the same client key as many times as I want. In production environment where you use a lot of sensors and different "customers" you would probably use another setup; but for my home setup it's enough.
 
+```
+chmod 755 mqtt-keys-make.sh
+./mqtt-keys-make.sh
+```
+
 Use the mqtt-keys-make.sh script to create the keys for MQTT server and client
 
 ## 2. Install (Server/Docker)
