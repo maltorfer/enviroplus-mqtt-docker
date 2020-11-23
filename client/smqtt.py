@@ -49,9 +49,9 @@ DEFAULT_MQTT_BROKER_IP = "your.mqqtt-hostname.com"
 DEFAULT_MQTT_BROKER_PORT = 8883
 DEFAULT_MQTT_TOPIC = "sensors"
 DEFAULT_READ_INTERVAL = 5
-DEFAULT_MQTT_TLS = "./ca.crt"
-DEFAULT_MQTT_CLIENTCRT = "./client.crt"
-DEFAULT_MQTT_CLIENTKEY = "./client.key"
+DEFAULT_MQTT_TLS = "ca.crt"
+DEFAULT_MQTT_CLIENTCRT = "client.crt"
+DEFAULT_MQTT_CLIENTKEY = "client.key"
 
 
 # mqtt callbacks
@@ -422,7 +422,7 @@ parser.add_argument(
     "--broker",
     default=DEFAULT_MQTT_BROKER_IP,
     type=str,
-    help="mqtt broker IP",
+    help="mqtt broker IP or hostname",
 )
 parser.add_argument(
     "--port",
@@ -460,6 +460,10 @@ parser.add_argument(
 
 args = parser.parse_args()
 
+
+print(args.clientcrt);
+
+
 # Raspberry Pi ID
 device_serial_number = get_serial_number()
 device_id = "raspi-" + device_serial_number
@@ -483,8 +487,7 @@ Press Ctrl+C to exit!
 # on your mqtt setup, you could also use the client certificate CN. Certificates can be shared by multiple clients,
 # unless you prevent in the mqtt config.
 mqtt_client = mqtt.Client(client_id=device_id)
-mqtt_client.tls_set(ca_certs={args.tls}, certfile={args.clientcrt}, keyfile={args.clientkey}, cert_reqs=ssl.CERT_REQUIRED,
-    tls_version=ssl.PROTOCOL_TLS, ciphers=None)
+mqtt_client.tls_set(ca_certs=args.tls, certfile=args.clientcrt, keyfile=args.clientkey, cert_reqs=ssl.CERT_REQUIRED, tls_version=ssl.PROTOCOL_TLS, ciphers=None)
 # We only use the username. Password is empty.
 mqtt_client.username_pw_set(username=format(device_serial_number))
 # Allows self-signed certificates
