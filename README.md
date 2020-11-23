@@ -45,18 +45,24 @@ GRANT ALL ON sensors TO telegraf
 
 ```
 cd client
-pip3 install -r requirements.txt
+sudo pip3 install -r requirements.txt
+```
+
+- Start the service to test whether connection to sensor and mqtt server is ok:
+
+```
+python3 smqtt.py --broker hostname.domain.com --port 8883 --topic sensors --interval 15 --tls ./ca.crt --clientcrt ./client.crt --clientkey ./client.key
 ```
 
 - Optional: Enable the client as a service. First edit <code>enviro.service</code> an change as required.
 
 Start the service:
 ```
-systemctl start enviro.service
+sudo systemctl start enviro.service
 ```
 Enable start at boot time:
 ```
-systemctl enable enviro.service
+sudo systemctl enable enviro.service
 ```
 
 ## Configure grafana
