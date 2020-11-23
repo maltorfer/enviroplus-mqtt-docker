@@ -8,7 +8,7 @@ Requirements:
 - Optional: Particle Sensor https://shop.pimoroni.com/products/pms5003-particulate-matter-sensor-with-cable
 
 ## 1. Create Server- and Client-keys
-I'm using keys client- and server-keys to authenticate and secure the MQTT connection. Keys and in MQTT can be used in various ways; in particular they can be used for client identification based on the client-key content (CN) or just to authenticate the client. I'm using the keys only to authenticate the client. The identification of the client itself is done by username (without password as we use the key to secure). This way I can use the same client key as many times as I want. In production environment where you use a lot of sensors and different "customers" you would probably use another setup; but for my home setup it's enough.
+I'm using keys client- and server-keys to authenticate and secure the MQTT connection. Keys in MQTT can be used in various ways; in particular they can be used for client identification based on the client-key content (CN) or just to authenticate the client. I'm using the keys only to authenticate the client. The identification of the client itself is done by username (without password as we use the key to secure). This way I can use the same client key as many times as I want. In production environment where you use a lot of sensors and different "customers" you would probably use another setup; but for my home setup it's enough.
 
 ```
 chmod 755 mqtt-keys-make.sh
@@ -54,7 +54,7 @@ sudo pip3 install -r requirements.txt
 python3 smqtt.py --broker hostname.domain.com --port 8883 --topic sensors --interval 15 --tls ./ca.crt --clientcrt ./client.crt --clientkey ./client.key
 ```
 
-- Optional: Enable the client as a service. First edit <code>enviro.service</code> an change as required.
+- Optional: Enable the client as a service. First edit <code>enviro.service</code> and copy to systemd <code> sudo cp enviro.service /etc/systemd/system/.</code> change as required.
 
 Start the service:
 ```
