@@ -66,12 +66,12 @@ sudo systemctl enable enviro.service
 ```
 
 ## Configure grafana
-- Access Grafana from http://<host ip>:3000
+- Access Grafana http://host_ip:3000
 - Log in with username/password admin/admin
 - Go to Configuration > Data Sources
 - Add data source (InfluxDB)
 - Name: InfluxDB
-- URL: http://<host ip>:8086
+- URL: http://host_ip:8086
 - Database: sensors
 - User: telegraf
 - Password: telegraf
