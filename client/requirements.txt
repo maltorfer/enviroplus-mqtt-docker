@@ -5,7 +5,7 @@ enviroplus==0.0.3
 fonts==0.0.3
 ltr559==0.1.1
 paho_mqtt==1.5.1
-Pillow==8.1.0
+Pillow==9.0.0
 pms5003==0.0.5
 pytz==2020.4
 smbus==1.1.post2
